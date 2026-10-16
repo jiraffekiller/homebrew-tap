@@ -1,0 +1,26 @@
+name: Bump cask to latest release
+on:
+  schedule:
+    - cron: "17 */6 * * *"   # every six hours
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update version and sha256 from the latest Sail release
+        id: bump
+        run: |
+          out=$(bash scripts/bump.sh)
+          echo "$out"
+          echo "result=$out" >> "$GITHUB_OUTPUT"
+      - name: Commit and push
+        if: startsWith(steps.bump.outputs.result, 'changed')
+        run: |
+          version=$(sed -n 's/^  version "\(.*\)"$/\1/p' Casks/sail.rb)
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "sail ${version}"
+          git push
