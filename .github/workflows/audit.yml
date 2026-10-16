@@ -13,5 +13,5 @@ jobs:
           mkdir -p "$(brew --repository)/Library/Taps/jiraffekiller"
           ln -s "$GITHUB_WORKSPACE" "$(brew --repository)/Library/Taps/jiraffekiller/homebrew-tap"
       - run: brew style jiraffekiller/tap
-      - run: brew audit --cask --online jiraffekiller/tap/sail
-      - run: brew fetch --cask jiraffekiller/tap/sail
+      - run: brew audit --cask --online jiraffekiller/tap/sail-battery
+      - run: brew fetch --cask jiraffekiller/tap/sail-battery

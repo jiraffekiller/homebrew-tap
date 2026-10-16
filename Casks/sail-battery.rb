@@ -1,4 +1,4 @@
-cask "sail" do
+cask "sail-battery" do
   version "0.2.0"
   sha256 "5fb64d16f56c0af37297afedb8d9a4e6c9c4540271ebe0916af56d6bbfae4caa"
 
@@ -31,9 +31,10 @@ cask "sail" do
   ]
 
   caveats <<~EOS
-    Sail is ad-hoc signed (not notarized). On first launch macOS will refuse to open it;
-    allow it under System Settings > Privacy & Security > Open Anyway, or install with
-      brew install --cask --no-quarantine jiraffekiller/tap/sail
+    Sail is ad-hoc signed (not notarized), so macOS blocks the first launch.
+    Either allow it under System Settings > Privacy & Security > Open Anyway,
+    or clear the quarantine flag once:
+      xattr -dr com.apple.quarantine /Applications/Sail.app
     Limits below 80% need the privileged helper; the Setup window installs it.
   EOS
 end

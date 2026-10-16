@@ -1,9 +1,9 @@
 #!/bin/bash
-# Update Casks/sail.rb to the latest GitHub release of jiraffekiller/sail.
+# Update Casks/sail-battery.rb to the latest GitHub release of jiraffekiller/sail.
 # Prints "changed (old -> new)" or "unchanged (version)". Needs curl and jq; no credentials.
 set -euo pipefail
 
-cask="Casks/sail.rb"
+cask="Casks/sail-battery.rb"
 repo="jiraffekiller/sail"
 
 latest=$(curl -fsSL "https://api.github.com/repos/${repo}/releases/latest")
